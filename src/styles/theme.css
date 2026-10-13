@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #f59e0b; /* Amber / Orange theme */
+  --primary-hover: #d97706;
+  --primary-light: #fffbeb;
+  --sidebar-bg: #f9fafb;
+  --main-bg: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-light: #e5e7eb;
+  --user-msg-bg: #f3f4f6;
+  --input-bg: #f9fafb;
+}

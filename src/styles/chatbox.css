@@ -1,0 +1,236 @@
+/* --- Exact Logo 3-Color Gradient Shift Animation --- */
+@keyframes logoGradientShift {
+  0% {
+    background: linear-gradient(135deg, #1b3686 0%, #2563eb 100%) !important; /* Blue Gradient */
+    border-color: #1b3686 !important;
+  }
+  33% {
+    background: linear-gradient(135deg, #15803d 0%, #22c55e 100%) !important; /* Green Gradient */
+    border-color: #15803d !important;
+  }
+  66% {
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 100%) !important; /* Orange Gradient */
+    border-color: #ea580c !important;
+  }
+  100% {
+    background: linear-gradient(135deg, #1b3686 0%, #2563eb 100%) !important; /* Blue Gradient */
+    border-color: #1b3686 !important;
+  }
+}
+
+/* Dynamic Color Shift for Solid Elements */
+@keyframes dynamicBgShift {
+  0% {
+    background-color: #1b3686 !important;
+    border-color: #1b3686 !important;
+  }
+  33% {
+    background-color: #15803d !important;
+    border-color: #15803d !important;
+  }
+  66% {
+    background-color: #ea580c !important;
+    border-color: #ea580c !important;
+  }
+  100% {
+    background-color: #1b3686 !important;
+    border-color: #1b3686 !important;
+  }
+}
+
+/* Light Chip & Active History Background Shift */
+@keyframes dynamicChipShift {
+  0% {
+    background-color: #f0f4ff !important;
+    border-color: rgba(27, 54, 134, 0.4) !important;
+    color: #1b3686 !important;
+  }
+  33% {
+    background-color: #f0fdf4 !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+    color: #15803d !important;
+  }
+  66% {
+    background-color: #fff7ed !important;
+    border-color: rgba(249, 115, 22, 0.4) !important;
+    color: #ea580c !important;
+  }
+  100% {
+    background-color: #f0f4ff !important;
+    border-color: rgba(27, 54, 134, 0.4) !important;
+    color: #1b3686 !important;
+  }
+}
+
+/* Full Screen Ultra-Light Pastel Background Shift Animation */
+@keyframes screenBgColorShift {
+  0% {
+    background-color: #f8fafc;
+  }
+  33% {
+    background-color: #f6fbf7;
+  }
+  66% {
+    background-color: #fdfbf7;
+  }
+  100% {
+    background-color: #f8fafc;
+  }
+}
+
+.chatbox-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  border: none !important;
+  outline: none !important;
+  animation: screenBgColorShift 14s infinite ease-in-out;
+  box-sizing: border-box;
+  transition: background-color 1.2s ease;
+}
+
+/* CHANGED: Dynamic 3-Color Gradient Shift for Sidebar */
+.chat-sidebar {
+  width: 260px;
+  animation: logoGradientShift 10s infinite ease-in-out !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  transition: transform 0.3s ease, margin-left 0.3s ease;
+  z-index: 20;
+  color: #ffffff !important;
+}
+
+.chat-sidebar.closed {
+  margin-left: -260px;
+}
+
+/* CHANGED: Sidebar Header & Title for Light Text on Dark Animated Gradient Background */
+.sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 6px 4px !important;
+  margin-bottom: 16px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.sidebar-brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.brand-title,
+.sidebar-header h2,
+.sidebar-header span {
+  color: #ffffff !important; /* Visible on animated background */
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: inline-block !important;
+}
+
+/* Toggle Close Button */
+.sidebar-toggle-close,
+.sidebar-header button:not(.new-chat-btn) {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: none !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  padding: 6px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.sidebar-toggle-close:hover,
+.sidebar-header button:not(.new-chat-btn):hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+}
+
+/* Sidebar '+ New Chat' Button */
+.chat-sidebar button.new-chat-btn,
+.new-chat-btn {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.new-chat-btn:hover {
+  transform: translateY(-1px);
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Sidebar Active History Highlight */
+.sidebar-history-item.active,
+.history-item-btn.active,
+.chat-sidebar div[class*="border-amber"],
+.chat-sidebar div[class*="bg-amber"] {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #ffffff !important;
+}
+
+.chatbox-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+/* User Message Chat Bubbles Dynamic Color Shift */
+.user-chat-bubble,
+div[class*="bg-amber"],
+div[class*="bg-orange"] {
+  color: #ffffff !important;
+  padding: 10px 18px;
+  border-radius: 18px 18px 4px 18px;
+  font-size: 14px;
+  max-width: 80%;
+  animation: logoGradientShift 10s infinite ease-in-out !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Quick Suggestion Chips Dynamic Color Shift */
+.suggestion-chip-btn,
+button[class*="border-amber"],
+button[class*="text-amber"] {
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  animation: dynamicChipShift 9s infinite ease-in-out !important;
+  transition: transform 0.2s ease;
+}
+
+.suggestion-chip-btn:hover {
+  transform: translateY(-1px);
+}

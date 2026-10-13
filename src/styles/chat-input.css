@@ -1,0 +1,113 @@
+.chat-input-wrapper {
+  padding: 16px;
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.chat-input-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Keyframes for Input Field Border Color Transition */
+@keyframes inputBorderShift {
+  0% {
+    border-color: rgba(27, 54, 134, 0.5); /* Blue */
+    box-shadow: 0 0 10px rgba(27, 54, 134, 0.15);
+  }
+  33% {
+    border-color: rgba(34, 197, 94, 0.5); /* Green */
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
+  }
+  66% {
+    border-color: rgba(249, 115, 22, 0.5); /* Orange */
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
+  }
+  100% {
+    border-color: rgba(27, 54, 134, 0.5); /* Blue */
+    box-shadow: 0 0 10px rgba(27, 54, 134, 0.15);
+  }
+}
+
+/* Keyframes for Send Button Background Transition */
+@keyframes sendBtnColorShift {
+  0% {
+    background-color: #1b3686; /* Blue */
+    box-shadow: 0 0 12px rgba(27, 54, 134, 0.35);
+  }
+  33% {
+    background-color: #15803d; /* Green */
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+  }
+  66% {
+    background-color: #ea580c; /* Orange */
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
+  }
+  100% {
+    background-color: #1b3686; /* Blue */
+    box-shadow: 0 0 12px rgba(27, 54, 134, 0.35);
+  }
+}
+
+.chat-input-field {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1.5px solid rgba(27, 54, 134, 0.5);
+  border-radius: 9999px;
+  padding: 14px 52px 14px 20px;
+  font-size: 14px;
+  outline: none;
+  color: #1f2937;
+  transition: background-color 0.2s ease-in-out;
+  /* Always animate border colors automatically */
+  animation: inputBorderShift 7s infinite ease-in-out;
+}
+
+.chat-input-field::placeholder {
+  color: #9ca3af;
+}
+
+.chat-input-field:focus {
+  background-color: #ffffff;
+}
+
+.send-submit-btn {
+  position: absolute;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Active Button Shimmer Animation */
+.send-submit-btn:not(:disabled) {
+  animation: sendBtnColorShift 7s infinite ease-in-out;
+}
+
+.send-submit-btn:not(:disabled):hover {
+  transform: scale(1.08);
+}
+
+.send-submit-btn:disabled {
+  background-color: #d1d5db;
+  color: #ffffff;
+  cursor: not-allowed;
+  box-shadow: none;
+  animation: none;
+}
+
+.input-disclaimer-text {
+  font-size: 11px;
+  text-align: center;
+  color: #9ca3af;
+  margin-top: 8px;
+}
