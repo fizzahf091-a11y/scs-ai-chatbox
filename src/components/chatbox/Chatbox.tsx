@@ -20,6 +20,13 @@ interface Message {
   suggestions?: string[];
 }
 
+const WELCOME_MESSAGE: Message = {
+  id: 'scs-welcome',
+  sender: 'bot',
+  text: "Assalam-o-Alaikum! 👋 Welcome to SCS Training & Development Center. I'm your AI assistant. How can I help you today?",
+  suggestions: ['Courses', 'Admissions', 'Fees'],
+};
+
 export default function Chatbox() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeChatId, setActiveChatId] = useState('');
@@ -31,17 +38,19 @@ export default function Chatbox() {
   const [adminHistory, setAdminHistory] = useState<ChatHistoryItem[]>([]);
   const [studentHistory, setStudentHistory] = useState<ChatHistoryItem[]>([]);
 
-  // Current chat messages
-  const [messages, setMessages] = useState<Message[]>([]);
+  // Show the welcome message when the chatbot opens
+  const [messages, setMessages] = useState<Message[]>([
+    WELCOME_MESSAGE,
+  ]);
 
   // Prevent duplicate requests
   const [isSending, setIsSending] = useState(false);
 
-  // Start a new chat
+  // Start a new chat and show the welcome message again
   const handleNewChat = () => {
     if (isSending) return;
 
-    setMessages([]);
+    setMessages([WELCOME_MESSAGE]);
     setActiveChatId('');
   };
 
@@ -61,7 +70,11 @@ export default function Chatbox() {
       text: cleanText,
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    // Remove the welcome message once the user starts chatting
+    setMessages((prev) => [
+      ...prev.filter((message) => message.id !== WELCOME_MESSAGE.id),
+      userMsg,
+    ]);
 
     const newHistoryItem: ChatHistoryItem = {
       id: newMsgId,
