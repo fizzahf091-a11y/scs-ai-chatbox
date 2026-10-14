@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -16,33 +17,39 @@ interface Props {
   onSuggestionClick: (text: string) => void;
 }
 
-export default function ChatMessages({ messages, onSuggestionClick }: Props) {
+export default function ChatMessages({
+  messages,
+  onSuggestionClick,
+}: Props) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll to bottom when a new message arrives
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  // Auto-scroll when a new message arrives
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0) {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
   }, [messages]);
 
+  // Preserve the welcome screen on initial load and New Chat
   if (messages.length === 0) {
     return <WelcomeScreen onCardClick={onSuggestionClick} />;
   }
 
   return (
-    <div className="chat-messages-container" style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+    <div className="chat-messages-container">
       {messages.map((msg) => (
-        <ChatMessage 
-          key={msg.id} 
-          sender={msg.sender} 
-          text={msg.text} 
+        <ChatMessage
+          key={msg.id}
+          sender={msg.sender}
+          text={msg.text}
           suggestions={msg.suggestions}
           onSuggestionClick={onSuggestionClick}
         />
       ))}
+
       <div ref={messagesEndRef} />
     </div>
   );

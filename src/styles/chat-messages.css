@@ -1,11 +1,136 @@
+
+/* ==========================================
+   SCS AI CHATBOT — CHAT MESSAGES CONTAINER
+   Responsive: Mobile, Tablet & Desktop
+   SCS Orange: #F7941D
+========================================== */
+
+/* Main Messages Container */
 .chat-messages-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 24px 16px;
-  max-width: 768px;
+  flex: 1 1 auto;
+
   width: 100%;
+  max-width: 768px;
+  min-width: 0;
+  min-height: 0;
+
   margin: 0 auto;
+  padding: 24px 16px;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #F7941D transparent;
+}
+
+/* Prevent message items from shrinking unexpectedly */
+.chat-messages-container > * {
+  flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Scrollbar — Chrome, Edge, Safari
+========================================== */
+
+.chat-messages-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb {
+  background-color: rgba(247, 148, 29, 0.45);
+  border-radius: 999px;
+}
+
+.chat-messages-container::-webkit-scrollbar-thumb:hover {
+  background-color: #F7941D;
+}
+
+/* ==========================================
+   Tablet: 768px - 1023px
+========================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-messages-container {
+    max-width: 720px;
+    padding: 20px 16px;
+    gap: 18px;
+  }
+}
+
+/* ==========================================
+   Mobile: 481px - 767px
+========================================== */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .chat-messages-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .chat-messages-container::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* ==========================================
+   Small Mobile: 361px - 480px
+========================================== */
+
+@media (min-width: 361px) and (max-width: 480px) {
+  .chat-messages-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 10px;
+    gap: 14px;
+  }
+
+  .chat-messages-container::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+/* ==========================================
+   Extra Small Mobile: 320px - 360px
+========================================== */
+
+@media (max-width: 360px) {
+  .chat-messages-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 8px;
+    gap: 12px;
+  }
+
+  .chat-messages-container::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+/* ==========================================
+   Accessibility — Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-messages-container {
+    scroll-behavior: auto;
+  }
 }

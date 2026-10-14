@@ -1,89 +1,408 @@
+
+/* ==========================================
+   SCS AI CHATBOT — CHAT MESSAGES
+   Responsive: Mobile, Tablet & Desktop
+   SCS Orange: #F7941D
+   SCS Blue:   #30378F
+   SCS Green:  #13A653
+========================================== */
+
+/* Message Row */
 .chat-message-row {
   display: flex;
+  align-items: flex-start;
   gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
   font-size: 14px;
   line-height: 1.6;
+
+  overflow-wrap: anywhere;
 }
 
+/* User Message Alignment */
 .chat-message-row.user {
   justify-content: flex-end;
 }
 
+/* Bot Message Alignment */
 .chat-message-row.bot {
   justify-content: flex-start;
 }
 
+/* ==========================================
+   Message Avatar
+========================================== */
+
 .message-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #7c2d12; /* Darker brown/orange tone for bot avatar */
-  color: white;
-  font-weight: 600;
-  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+
   margin-top: 2px;
+  flex-shrink: 0;
+
+  background-color: #F7941D;
+  color: #FFFFFF;
+
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+
+  box-sizing: border-box;
 }
 
+/* ==========================================
+   Message Content Wrapper
+========================================== */
+
 .message-content-wrapper {
-  max-width: 80%;
   display: flex;
   flex-direction: column;
+
+  width: fit-content;
+  max-width: 80%;
+  min-width: 0;
+
+  box-sizing: border-box;
 }
 
 .chat-message-row.user .message-content-wrapper {
   align-items: flex-end;
 }
 
+.chat-message-row.bot .message-content-wrapper {
+  align-items: flex-start;
+}
+
+/* ==========================================
+   Message Bubble
+========================================== */
+
 .message-text {
+  max-width: 100%;
+  min-width: 0;
+
   padding: 12px 18px;
+
   border-radius: 16px;
+  box-sizing: border-box;
+
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: pre-wrap;
 }
 
+/* User Bubble — Official SCS Orange */
 .chat-message-row.user .message-text {
-  background-color: #f59e0b; /* Orange user bubble */
-  color: white;
+  background-color: #F7941D;
+  color: #FFFFFF;
+
+  border: 1px solid #F7941D;
   border-top-right-radius: 4px;
+
   font-weight: 500;
-  box-shadow: 0 1px 2px rgba(245, 158, 11, 0.2);
+
+  box-shadow: 0 1px 3px rgba(247, 148, 29, 0.2);
 }
 
+/* Bot Bubble */
 .chat-message-row.bot .message-text {
-  background-color: #f9fafb;
-  color: #1f2937;
-  border: 1px solid #e5e7eb;
+  background-color: #F9FAFB;
+  color: #1F2937;
+
+  border: 1px solid #E5E7EB;
   border-top-left-radius: 4px;
 }
 
+/* Links Inside Messages */
+.message-text a {
+  color: #30378F;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.chat-message-row.user .message-text a {
+  color: #FFFFFF;
+}
+
+/* Images Inside Messages */
+.message-text img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Code Inside Messages */
+.message-text pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.message-text code {
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   Message Timestamp
+========================================== */
+
 .message-timestamp {
-  font-size: 10.5px;
-  color: #9ca3af;
   margin-top: 4px;
   padding: 0 4px;
+
+  color: #9CA3AF;
+
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
 }
 
-/* Suggestion Chips like Admissions, Fees */
+/* ==========================================
+   Suggestion Chips
+   Examples: Courses, Admissions, Fees
+========================================== */
+
 .suggestion-chips-container {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+
+  box-sizing: border-box;
 }
 
+/* Individual Suggestion Chip */
 .suggestion-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 100%;
+  min-height: 32px;
   padding: 6px 14px;
+
+  box-sizing: border-box;
+
+  background-color: #FFF4E5;
+  color: #9A4D00;
+
+  border: 1px solid #F7941D;
   border-radius: 16px;
-  border: 1px solid #fde68a;
-  background-color: #fffbeb;
-  color: #d97706;
+
+  font-family: inherit;
   font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  text-align: center;
+  overflow-wrap: anywhere;
+
   cursor: pointer;
-  transition: all 0.2s;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
+/* Suggestion Hover */
 .suggestion-chip:hover {
-  background-color: #fef3c7;
+  background-color: #F7941D;
+  border-color: #F7941D;
+  color: #FFFFFF;
+}
+
+/* Keyboard Accessibility */
+.suggestion-chip:focus-visible {
+  outline: 2px solid #30378F;
+  outline-offset: 3px;
+}
+
+/* Press Feedback */
+.suggestion-chip:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================
+   Tablet: 768px - 1023px
+========================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-message-row {
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .message-content-wrapper {
+    max-width: 84%;
+  }
+
+  .message-text {
+    padding: 11px 16px;
+  }
+}
+
+/* ==========================================
+   Mobile: 481px - 767px
+========================================== */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .chat-message-row {
+    gap: 9px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .message-avatar {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 11px;
+  }
+
+  .message-content-wrapper {
+    max-width: 86%;
+  }
+
+  .message-text {
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+
+  .message-timestamp {
+    font-size: 10px;
+  }
+
+  .suggestion-chips-container {
+    gap: 7px;
+    margin-top: 8px;
+  }
+
+  .suggestion-chip {
+    min-height: 31px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ==========================================
+   Small Mobile: 361px - 480px
+========================================== */
+
+@media (min-width: 361px) and (max-width: 480px) {
+  .chat-message-row {
+    gap: 7px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .message-avatar {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    font-size: 10px;
+  }
+
+  .message-content-wrapper {
+    max-width: 88%;
+  }
+
+  .message-text {
+    padding: 10px 12px;
+    border-radius: 13px;
+  }
+
+  .message-timestamp {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+  .suggestion-chips-container {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .suggestion-chip {
+    min-height: 30px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+  }
+}
+
+/* ==========================================
+   Extra Small Mobile: 320px - 360px
+========================================== */
+
+@media (max-width: 360px) {
+  .chat-message-row {
+    gap: 6px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .message-avatar {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    font-size: 10px;
+  }
+
+  .message-content-wrapper {
+    max-width: 89%;
+  }
+
+  .message-text {
+    padding: 9px 11px;
+    border-radius: 12px;
+  }
+
+  .message-timestamp {
+    margin-top: 3px;
+    padding: 0 3px;
+    font-size: 9.5px;
+  }
+
+  .suggestion-chips-container {
+    gap: 5px;
+    margin-top: 7px;
+  }
+
+  .suggestion-chip {
+    min-height: 29px;
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+}
+
+/* ==========================================
+   Accessibility: Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .suggestion-chip {
+    transition: none;
+  }
+
+  .suggestion-chip:active {
+    transform: none;
+  }
 }

@@ -1,170 +1,269 @@
-/* --- Root CSS Variables --- */
+
+/* ==========================================
+   SCS AI CHATBOT — MAIN LAYOUT
+   Responsive: Mobile, Tablet & Desktop
+   Official SCS Orange: #F7941D
+========================================== */
+
+/* Root Variables */
 :root {
-  --primary-color: #f59e0b; /* Amber / Orange theme */
+  --primary-color: #F7941D;
+  --primary-hover: #E88712;
+  --primary-light: #FFF4E5;
+
+  --scs-blue: #30378F;
+  --scs-green: #13A653;
+  --scs-orange: #F7941D;
+
+  --chat-text: #1F2937;
+  --chat-muted: #6B7280;
+  --chat-border: #E5E7EB;
+  --chat-surface: #FFFFFF;
+  --chat-page: #F8FAFC;
+
+  --sidebar-width: 260px;
+  --chat-transition: 0.3s ease;
 }
 
-/* --- SCS Gradient Shift Animation (Soft Orange, Others Commented) --- */
+/* ==========================================
+   Background Animations
+========================================== */
+
 @keyframes logoGradientShift {
-  0% {
-    /* Blue Gradient (Temporarily Commented) */
-    /* background: linear-gradient(135deg, #1b3686 0%, #3b82f6 50%, #60a5fa 100%); */
-    /* border-color: #1b3686; */
-
-    background: linear-gradient(135deg, #e69312 0%, #f59e0b 100%);
-    border-color: #f59e0b;
-  }
-  33% {
-    /* Green Gradient (Temporarily Commented) */
-    /* background: linear-gradient(135deg, #15803d 0%, #22c55e 50%, #4ade80 100%); */
-    /* border-color: #15803d; */
-
-    background: linear-gradient(135deg, #df890e 0%, #f59e0b 100%);
-    border-color: #f59e0b;
-  }
-  66% {
-    /* Active Soft Orange/Amber Gradient */
-    background: linear-gradient(135deg, #e69312 0%, #f59e0b 100%);
-    border-color: #f59e0b;
-  }
+  0%,
   100% {
-    /* Blue Gradient (Temporarily Commented) */
-    /* background: linear-gradient(135deg, #1b3686 0%, #3b82f6 50%, #60a5fa 100%); */
-    /* border-color: #1b3686; */
+    background: linear-gradient(
+      135deg,
+      #E88712 0%,
+      #F7941D 100%
+    );
+    border-color: #F7941D;
+  }
 
-    background: linear-gradient(135deg, #e69312 0%, #f59e0b 100%);
-    border-color: #f59e0b;
+  50% {
+    background: linear-gradient(
+      135deg,
+      #F7941D 0%,
+      #FFB347 100%
+    );
+    border-color: #F7941D;
   }
 }
 
 @keyframes dynamicChipShift {
-  0% {
-    background-color: #fffbe3;
-    border-color: rgba(245, 158, 11, 0.4);
-    color: #f59e0b;
-  }
-  33% {
-    background-color: #fffbe3;
-    border-color: rgba(245, 158, 11, 0.4);
-    color: #f59e0b;
-  }
-  66% {
-    background-color: #fffbe3;
-    border-color: rgba(245, 158, 11, 0.4);
-    color: #f59e0b;
-  }
+  0%,
   100% {
-    background-color: #fffbe3;
-    border-color: rgba(245, 158, 11, 0.4);
-    color: #f59e0b;
+    background-color: #FFF4E5;
+    border-color: rgba(247, 148, 29, 0.4);
+    color: #9A4D00;
+  }
+
+  50% {
+    background-color: #FFF0D9;
+    border-color: rgba(247, 148, 29, 0.65);
+    color: #9A4D00;
   }
 }
 
 @keyframes screenBgColorShift {
-  0% { background-color: #f8fafc; }
-  33% { background-color: #fdfdf7; }
-  66% { background-color: #fdfdf7; }
-  100% { background-color: #f8fafc; }
+  0%,
+  100% {
+    background-color: #F8FAFC;
+  }
+
+  50% {
+    background-color: #FFFCF7;
+  }
 }
+
+/* ==========================================
+   Main Chatbox Container
+========================================== */
 
 .chatbox-container {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  animation: screenBgColorShift 14s infinite ease-in-out;
   box-sizing: border-box;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  background-color: var(--chat-page);
+  animation: screenBgColorShift 14s infinite ease-in-out;
 }
 
-/* Sidebar Layout with Soft Orange Gradient */
+/* ==========================================
+   Sidebar
+========================================== */
+
 .chat-sidebar {
-  width: 260px;
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100%;
+  min-height: 0;
+
   padding: 16px 12px;
-  transition: all 0.3s ease;
-  user-select: none;
-  flex-shrink: 0;
-  height: 100vh;
+
   box-sizing: border-box;
-  color: #ffffff !important;
-  
-  /* Soft Orange Gradient Motion */
-  animation: logoGradientShift 12s infinite ease-in-out !important;
+  flex: 0 0 var(--sidebar-width);
+  overflow: hidden;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+  color: #FFFFFF !important;
+  user-select: none;
+
+  animation: logoGradientShift 12s infinite ease-in-out;
+
+  transition:
+    width var(--chat-transition),
+    min-width var(--chat-transition),
+    flex-basis var(--chat-transition),
+    padding var(--chat-transition),
+    border-color var(--chat-transition);
 }
 
+/* Collapsed Sidebar */
 .chat-sidebar.closed {
   width: 0;
-  padding: 0;
+  min-width: 0;
+  flex-basis: 0;
+
+  padding-left: 0;
+  padding-right: 0;
+
   overflow: hidden;
   border-right: none;
 }
+
+/* ==========================================
+   Sidebar Header
+========================================== */
 
 .sidebar-header {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+
+  min-width: 0;
   padding: 4px 6px !important;
   margin-bottom: 16px !important;
+
   background: transparent !important;
+  gap: 8px;
 }
 
 .sidebar-brand {
   display: flex !important;
   align-items: center !important;
+
+  min-width: 0;
   gap: 10px !important;
 }
 
 .brand-title {
+  margin: 0;
+
   font-size: 15px !important;
   font-weight: 700 !important;
-  color: #ffffff !important;
+  line-height: 1.4;
+
+  color: #FFFFFF !important;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar-toggle-close {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  padding: 6px !important;
+
   background: rgba(255, 255, 255, 0.2) !important;
   border: none !important;
+  border-radius: 8px;
+
+  color: #FFFFFF !important;
   cursor: pointer !important;
-  color: #ffffff !important;
-  padding: 6px !important;
-  border-radius: 6px !important;
 }
 
 .sidebar-toggle-close:hover {
   background-color: rgba(255, 255, 255, 0.35) !important;
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 
-/* + New Chat Button with Glassmorphism Look */
+.sidebar-toggle-close:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   New Chat Button
+========================================== */
+
 .new-chat-btn {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
+
   width: 100% !important;
+  min-height: 42px;
+  min-width: 0;
+
+  gap: 8px !important;
   padding: 10px 16px !important;
-  
+  margin-bottom: 20px !important;
+
+  box-sizing: border-box;
+
   background-color: rgba(255, 255, 255, 0.22) !important;
-  color: #ffffff !important;
-  
+  color: #FFFFFF !important;
+
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   border-radius: 12px !important;
+
   font-size: 14px !important;
   font-weight: 600 !important;
+
   cursor: pointer !important;
-  margin-bottom: 20px !important;
+
   backdrop-filter: blur(4px);
-  
-  transition: transform 0.2s ease, background-color 0.2s ease !important;
+  -webkit-backdrop-filter: blur(4px);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease !important;
 }
 
 .new-chat-btn span,
 .new-chat-btn svg {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-  stroke: #ffffff !important;
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  flex-shrink: 0;
 }
 
 .new-chat-btn:hover {
@@ -172,77 +271,152 @@
   background-color: rgba(255, 255, 255, 0.35) !important;
 }
 
+.new-chat-btn:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   Chat History
+========================================== */
+
 .history-section {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+
+  overflow-x: hidden;
   overflow-y: auto;
+
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.45) transparent;
+}
+
+.history-section::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-section::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
 }
 
 .history-group-title {
+  padding: 8px 12px 4px;
+
   font-size: 11px;
   font-weight: 700;
+  line-height: 1.5;
+
   color: rgba(255, 255, 255, 0.85);
-  padding: 8px 12px 4px 12px;
+
   text-transform: uppercase;
   letter-spacing: 0.05em;
+
+  overflow-wrap: anywhere;
 }
 
 .history-item-btn {
+  display: block;
+
   width: 100%;
-  text-align: left;
+  min-width: 0;
   padding: 10px 12px;
+
+  box-sizing: border-box;
+
+  font-family: inherit;
   font-size: 13.5px;
-  border-radius: 10px;
+  line-height: 1.4;
+  text-align: left;
+
   border: 1px solid transparent;
+  border-radius: 10px;
+
   background: transparent;
   color: rgba(255, 255, 255, 0.95);
+
   cursor: pointer;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: background 0.15s;
+
+  transition: background-color 0.15s ease;
 }
 
 .history-item-btn:hover {
   background-color: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .history-item-btn.active {
   font-weight: 600 !important;
   background-color: rgba(255, 255, 255, 0.3) !important;
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 
+.history-item-btn:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: -2px;
+}
+
+/* ==========================================
+   Sidebar Footer
+========================================== */
+
 .sidebar-footer {
-  margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
+
+  min-width: 0;
   gap: 10px;
+
+  margin-top: auto;
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
   background: transparent !important;
 }
 
 .footer-logo-img {
   width: 28px;
   height: 28px;
+  min-width: 28px;
+
   object-fit: contain;
-  border-radius: 4px;
   flex-shrink: 0;
-  background-color: #ffffff;
+
+  border-radius: 4px;
+  background-color: #FFFFFF;
   padding: 2px;
+
+  box-sizing: border-box;
 }
 
 .footer-info {
   display: flex;
   flex-direction: column;
+
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
 }
 
 .footer-title {
   font-size: 11.5px;
   font-weight: 600;
-  color: #ffffff;
+  line-height: 1.4;
+
+  color: #FFFFFF;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -250,8 +424,191 @@
 
 .footer-subtitle {
   font-size: 10.5px;
+  line-height: 1.4;
+
   color: rgba(255, 255, 255, 0.85);
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ==========================================
+   Tablet: 768px - 1023px
+========================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-sidebar {
+    width: 240px;
+    min-width: 240px;
+    flex-basis: 240px;
+    padding: 14px 10px;
+  }
+
+  .chat-sidebar.closed {
+    width: 0;
+    min-width: 0;
+    flex-basis: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* ==========================================
+   Mobile: 481px - 767px
+========================================== */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .chatbox-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-sidebar {
+    width: min(280px, 82vw);
+    min-width: min(280px, 82vw);
+    flex-basis: min(280px, 82vw);
+
+    padding: 14px 10px;
+  }
+
+  .chat-sidebar.closed {
+    width: 0;
+    min-width: 0;
+    flex-basis: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .brand-title {
+    font-size: 14px !important;
+  }
+
+  .new-chat-btn {
+    padding: 10px 12px !important;
+  }
+}
+
+/* ==========================================
+   Small Mobile: 361px - 480px
+========================================== */
+
+@media (min-width: 361px) and (max-width: 480px) {
+  .chatbox-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-sidebar {
+    width: min(270px, 85vw);
+    min-width: min(270px, 85vw);
+    flex-basis: min(270px, 85vw);
+
+    padding: 12px 10px;
+  }
+
+  .chat-sidebar.closed {
+    width: 0;
+    min-width: 0;
+    flex-basis: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .brand-title {
+    font-size: 14px !important;
+  }
+
+  .history-item-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* ==========================================
+   Extra Small Mobile: 320px - 360px
+========================================== */
+
+@media (max-width: 360px) {
+  .chatbox-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chat-sidebar {
+    width: 85vw;
+    min-width: 85vw;
+    flex-basis: 85vw;
+
+    padding: 10px 8px;
+  }
+
+  .chat-sidebar.closed {
+    width: 0;
+    min-width: 0;
+    flex-basis: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .sidebar-header {
+    padding: 4px !important;
+  }
+
+  .sidebar-brand {
+    gap: 7px !important;
+  }
+
+  .brand-title {
+    font-size: 13px !important;
+  }
+
+  .new-chat-btn {
+    gap: 6px !important;
+    padding: 9px 8px !important;
+    font-size: 13px !important;
+  }
+
+  .history-item-btn {
+    padding: 9px 8px;
+    font-size: 12.5px;
+  }
+
+  .footer-logo-img {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+  }
+
+  .footer-title {
+    font-size: 10.5px;
+  }
+
+  .footer-subtitle {
+    font-size: 9.5px;
+  }
+}
+
+/* ==========================================
+   Accessibility: Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .chatbox-container,
+  .chat-sidebar {
+    animation: none !important;
+  }
+
+  .chatbox-container {
+    background-color: #F8FAFC;
+  }
+
+  .chat-sidebar {
+    background: #F7941D !important;
+  }
+
+  .chat-sidebar *,
+  .new-chat-btn {
+    transition: none !important;
+  }
 }

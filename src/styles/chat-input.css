@@ -1,113 +1,363 @@
+
+/* ==========================================
+   SCS AI CHATBOT — RESPONSIVE CHAT INPUT
+   SCS Official Brand Colors
+   Orange: #F7941D
+   Blue:   #30378F
+   Green:  #13A653
+========================================== */
+
+/* Input Wrapper */
 .chat-input-wrapper {
-  padding: 16px;
-  max-width: 768px;
   width: 100%;
+  max-width: 768px;
+  min-width: 0;
   margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
+/* Input Form */
 .chat-input-form {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
 }
 
-/* Keyframes for Input Field Border Color Transition */
+/* ==========================================
+   Input Border Color Animation
+========================================== */
+
 @keyframes inputBorderShift {
   0% {
-    border-color: rgba(27, 54, 134, 0.5); /* Blue */
-    box-shadow: 0 0 10px rgba(27, 54, 134, 0.15);
+    border-color: rgba(48, 55, 143, 0.5);
+    box-shadow: 0 0 10px rgba(48, 55, 143, 0.15);
   }
+
   33% {
-    border-color: rgba(34, 197, 94, 0.5); /* Green */
-    box-shadow: 0 0 10px rgba(34, 197, 94, 0.15);
+    border-color: rgba(19, 166, 83, 0.5);
+    box-shadow: 0 0 10px rgba(19, 166, 83, 0.15);
   }
+
   66% {
-    border-color: rgba(249, 115, 22, 0.5); /* Orange */
-    box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
+    border-color: rgba(247, 148, 29, 0.5);
+    box-shadow: 0 0 10px rgba(247, 148, 29, 0.15);
   }
+
   100% {
-    border-color: rgba(27, 54, 134, 0.5); /* Blue */
-    box-shadow: 0 0 10px rgba(27, 54, 134, 0.15);
+    border-color: rgba(48, 55, 143, 0.5);
+    box-shadow: 0 0 10px rgba(48, 55, 143, 0.15);
   }
 }
 
-/* Keyframes for Send Button Background Transition */
+/* ==========================================
+   Send Button Color Animation
+========================================== */
+
 @keyframes sendBtnColorShift {
   0% {
-    background-color: #1b3686; /* Blue */
-    box-shadow: 0 0 12px rgba(27, 54, 134, 0.35);
+    background-color: #30378F;
+    box-shadow: 0 0 12px rgba(48, 55, 143, 0.25);
   }
+
   33% {
-    background-color: #15803d; /* Green */
-    box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+    background-color: #13A653;
+    box-shadow: 0 0 12px rgba(19, 166, 83, 0.25);
   }
+
   66% {
-    background-color: #ea580c; /* Orange */
-    box-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
+    background-color: #F7941D;
+    box-shadow: 0 0 12px rgba(247, 148, 29, 0.35);
   }
+
   100% {
-    background-color: #1b3686; /* Blue */
-    box-shadow: 0 0 12px rgba(27, 54, 134, 0.35);
+    background-color: #30378F;
+    box-shadow: 0 0 12px rgba(48, 55, 143, 0.25);
   }
 }
 
+/* ==========================================
+   Text Input Field
+========================================== */
+
 .chat-input-field {
+  display: block;
   width: 100%;
-  background-color: #ffffff;
-  border: 1.5px solid rgba(27, 54, 134, 0.5);
+  min-width: 0;
+  min-height: 48px;
+  margin: 0;
+  box-sizing: border-box;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background-color: #FFFFFF;
+  color: #1F2937;
+
+  border: 1.5px solid rgba(48, 55, 143, 0.5);
   border-radius: 9999px;
-  padding: 14px 52px 14px 20px;
+
+  padding: 14px 54px 14px 20px;
+
+  font-family: inherit;
   font-size: 14px;
+  line-height: 1.4;
+
   outline: none;
-  color: #1f2937;
-  transition: background-color 0.2s ease-in-out;
-  /* Always animate border colors automatically */
+
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
   animation: inputBorderShift 7s infinite ease-in-out;
 }
 
 .chat-input-field::placeholder {
-  color: #9ca3af;
+  color: #9CA3AF;
+  opacity: 1;
 }
 
 .chat-input-field:focus {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
+
+
+.chat-input-field:focus-visible {
+  outline: none;
+  outline-offset: 0;
+}
+
+
+.chat-input-field:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   Send Button
+========================================== */
 
 .send-submit-btn {
   position: absolute;
-  right: 8px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  color: white;
+  top: 50%;
+  right: 7px;
+  transform: translateY(-50%);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0;
+
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #F7941D;
+  color: #FFFFFF;
+
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+
+  transition:
+    transform 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
-/* Active Button Shimmer Animation */
+/* Animate enabled button */
 .send-submit-btn:not(:disabled) {
   animation: sendBtnColorShift 7s infinite ease-in-out;
 }
 
+/* Hover */
 .send-submit-btn:not(:disabled):hover {
-  transform: scale(1.08);
+  transform: translateY(-50%) scale(1.06);
 }
 
+/* Keyboard Accessibility */
+.send-submit-btn:focus-visible {
+  outline: 2px solid #F7941D;
+  outline-offset: 3px;
+}
+
+/* Disabled Button */
 .send-submit-btn:disabled {
-  background-color: #d1d5db;
-  color: #ffffff;
+  background-color: #D1D5DB;
+  color: #FFFFFF;
   cursor: not-allowed;
   box-shadow: none;
   animation: none;
+  opacity: 1;
 }
 
+/* ==========================================
+   Disclaimer Text
+========================================== */
+
 .input-disclaimer-text {
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 0 4px;
+
+  box-sizing: border-box;
+
+  color: #9CA3AF;
   font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
   text-align: center;
-  color: #9ca3af;
-  margin-top: 8px;
+
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   Tablet: 768px - 1023px
+========================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .chat-input-wrapper {
+    max-width: 720px;
+    padding: 14px 16px;
+  }
+
+  .chat-input-field {
+    padding: 13px 52px 13px 18px;
+  }
+}
+
+/* ==========================================
+   Mobile: 481px - 767px
+========================================== */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .chat-input-wrapper {
+    padding: 12px;
+  }
+
+  .chat-input-field {
+    min-height: 46px;
+    padding: 12px 50px 12px 16px;
+    font-size: 14px;
+  }
+
+  .send-submit-btn {
+    right: 6px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+  }
+
+  .input-disclaimer-text {
+    margin-top: 7px;
+    font-size: 10px;
+  }
+}
+
+/* ==========================================
+   Small Mobile: 361px - 480px
+========================================== */
+
+@media (min-width: 361px) and (max-width: 480px) {
+  .chat-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .chat-input-form {
+    width: 100%;
+  }
+
+  .chat-input-field {
+    min-height: 44px;
+    padding: 11px 46px 11px 14px;
+    font-size: 14px;
+    border-width: 1px;
+  }
+
+  .chat-input-field::placeholder {
+    font-size: 13px;
+  }
+
+  .send-submit-btn {
+    right: 5px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .input-disclaimer-text {
+    margin-top: 7px;
+    padding: 0 2px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+
+/* ==========================================
+   Extra Small Mobile: 320px - 360px
+========================================== */
+
+@media (max-width: 360px) {
+  .chat-input-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  .chat-input-field {
+    min-height: 42px;
+    padding: 10px 43px 10px 12px;
+    font-size: 13px;
+  }
+
+  .chat-input-field::placeholder {
+    font-size: 12px;
+  }
+
+  .send-submit-btn {
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+  }
+
+  .input-disclaimer-text {
+    font-size: 9px;
+  }
+}
+
+/* ==========================================
+   Accessibility: Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-input-field,
+  .send-submit-btn,
+  .send-submit-btn:not(:disabled) {
+    animation: none;
+  }
+
+  .chat-input-field {
+    border-color: #F7941D;
+  }
+
+  .send-submit-btn:not(:disabled) {
+    background-color: #F7941D;
+    box-shadow: none;
+  }
+
+  .send-submit-btn {
+    transition: none;
+  }
 }

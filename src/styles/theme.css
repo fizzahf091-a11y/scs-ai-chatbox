@@ -1,12 +1,30 @@
+
 :root {
-  --primary-color: #f59e0b; /* Amber / Orange theme */
-  --primary-hover: #d97706;
-  --primary-light: #fffbeb;
+  /* SCS Official 3-Color Theme */
+  --scs-blue-dark: #1b3686;
+  --scs-blue: #2563eb;
+
+  --scs-green-dark: #15803d;
+  --scs-green: #22c55e;
+
+  --scs-orange-dark: #ea580c;
+  --scs-orange: #f97316;
+
+  /* Default Orange Theme */
+  --primary-color: #f97316;
+  --primary-hover: #ea580c;
+  --primary-light: #fff7ed;
+
+  /* Layout Colors */
   --sidebar-bg: #f9fafb;
   --main-bg: #ffffff;
+
+  /* Text Colors */
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
+
+  /* Borders and Inputs */
   --border-light: #e5e7eb;
-  --user-msg-bg: #f3f4f6;
+  --user-msg-bg: #fff7ed;
   --input-bg: #f9fafb;
 }

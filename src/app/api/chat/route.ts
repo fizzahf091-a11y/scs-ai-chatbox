@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { scsKnowledgeBase } from "../../../logic/scsData";
@@ -8,8 +9,19 @@ const MAX_MESSAGE_LENGTH = 2000;
 const MURIDKE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Office%20No.%201%2C%20Grand%20Estate%20Society%2C%20Main%20G.T.%20Road%2C%20Muridke%2C%20Pakistan";
 
+const SUGGESTIONS = [
+  "Courses",
+  "Admissions",
+  "Fees",
+  "Learning Paths",
+  "Certificates",
+  "Contact Us",
+];
+
 type ChatRequest = {
   message?: unknown;
+  userName?: unknown;
+  isFirstMessage?: unknown;
 };
 
 function detectLanguage(
@@ -49,6 +61,7 @@ function jsonError(
       success: false,
       error: message,
       ...(userMessage ? { answer: userMessage } : {}),
+      suggestions: SUGGESTIONS,
     },
     { status }
   );
@@ -75,6 +88,13 @@ export async function POST(req: Request) {
       typeof body?.message === "string"
         ? body.message.trim()
         : "";
+
+    const userName =
+      typeof body?.userName === "string"
+        ? body.userName.trim()
+        : "";
+
+    const isFirstMessage = body?.isFirstMessage === true;
 
     if (!message) {
       return jsonError(
@@ -118,6 +138,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         success: true,
         answer: addressAnswer,
+        suggestions: SUGGESTIONS,
         source: "fixed",
       });
     }
@@ -154,14 +175,24 @@ LANGUAGE RULES:
 4. Urdu-script question = Urdu-script answer.
 5. Do not switch languages unnecessarily.
 
+GREETING AND NAME RULES:
+1. ${isFirstMessage
+  ? "This is the user's first message in the current chat. Start with a short, polite greeting appropriate to the user's language, and ask their name."
+  : "This is not the user's first message. Do not repeat the initial greeting or ask for their name again unless needed."}
+2. Always answer the user's actual question when possible. Do not replace the answer with only a greeting or a request for their name.
+3. If the user asks a question in their first message, greet them, answer that question, and politely ask their name.
+4. ${userName
+  ? `The user's name is ${userName}. Address them naturally by this name when appropriate.`
+  : "The user's name has not been provided yet. If it is appropriate, ask for their name politely."}
+5. Do not invent or assume the user's name.
+6. If the user provides their name, acknowledge it naturally and continue helping with their question.
+
 KNOWLEDGE BASE RULES:
 1. Use the SCS knowledge base as the primary source for company facts.
-2. Never invent company details, staff roles, fees, schedules, admission
-   dates, policies, or current vacancies.
+2. Never invent company details, staff roles, fees, schedules, admission dates, policies, or current vacancies.
 3. If the requested information is unavailable, say so briefly.
 4. Do not claim to have completed an action that you did not perform.
-5. For unavailable SCS information, direct the user to WhatsApp
-   ${WHATSAPP_NUMBER} only when relevant.
+5. For unavailable SCS information, direct the user to WhatsApp ${WHATSAPP_NUMBER} only when relevant.
 
 ANSWER LENGTH AND STYLE:
 1. Answer only what the user asks.
@@ -169,9 +200,8 @@ ANSWER LENGTH AND STYLE:
 3. For a simple question, use one or two sentences.
 4. Do not add unrequested steps, suggestions, examples, or explanations.
 5. Do not repeat information unnecessarily.
-6. If the user asks for a list or detailed explanation, provide the
-   requested details only.
-7. Do not automatically add greetings, summaries, or follow-up questions.
+6. If the user asks for a list or detailed explanation, provide the requested details only.
+7. Do not automatically add summaries or unrelated follow-up questions.
 8. Do not add contact details unless the user asks or they are necessary.
 9. Do not make up information to make an answer seem complete.
 
@@ -211,10 +241,11 @@ ${JSON.stringify(scsKnowledgeBase)}
       throw new Error("OpenAI returned an empty response.");
     }
 
-    // 7. Return the answer
+    // 7. Return the answer with suggestion buttons
     return NextResponse.json({
       success: true,
       answer,
+      suggestions: SUGGESTIONS,
       source: "openai",
     });
   } catch (error: unknown) {
@@ -225,6 +256,7 @@ ${JSON.stringify(scsKnowledgeBase)}
         success: false,
         error: "The AI service could not process your request.",
         answer: getFallbackResponse(message),
+        suggestions: SUGGESTIONS,
       },
       { status: 500 }
     );
