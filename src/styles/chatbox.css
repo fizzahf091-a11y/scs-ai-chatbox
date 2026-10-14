@@ -80,14 +80,17 @@
 
 .chatbox-container {
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   border: none !important;
   outline: none !important;
   animation: screenBgColorShift 14s infinite ease-in-out;
   box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
   transition: background-color 1.2s ease;
 }
 
@@ -198,7 +201,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100vh;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
   position: relative;
   overflow: hidden;
   background-color: transparent;
@@ -280,10 +285,10 @@ button[class*="text-amber"] {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 260px;
+    width: min(260px, 85vw) !important;
     max-width: 85vw;
-    height: 100%;
-    height: 100dvh;
+    height: 100vh !important;
+    height: 100dvh !important;
     box-sizing: border-box;
     flex: 0 0 260px;
     margin-left: 0;
@@ -315,6 +320,36 @@ button[class*="text-amber"] {
   }
 }
 
+/* Keep the chat viewport full-height after the shared sidebar stylesheet loads. */
+.chatbox-container.chatbox-container {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.chatbox-main.chatbox-main {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  align-self: stretch;
+}
+
+@media screen and (max-width: 768px) {
+  .chat-sidebar.chat-sidebar {
+    width: min(260px, 85vw);
+    max-width: 85vw;
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .chat-sidebar.chat-sidebar {
+    width: 85vw;
+    max-width: 85vw;
+  }
+}
+
 /* Small mobile screens */
 @media screen and (max-width: 480px) {
   .chatbox-container {
@@ -323,9 +358,9 @@ button[class*="text-amber"] {
   }
 
   .chat-sidebar {
-    width: 260px;
+    width: min(260px, 85vw) !important;
     max-width: 85vw;
-    padding: 12px 10px;
+    padding: 12px 10px !important;
   }
 
   .chatbox-main {
@@ -337,8 +372,9 @@ button[class*="text-amber"] {
 /* Extra-small mobile screens */
 @media screen and (max-width: 360px) {
   .chat-sidebar {
-    width: 250px;
+    width: min(250px, 85vw) !important;
     max-width: 85vw;
+    padding: 10px 8px !important;
   }
 
   .chat-sidebar.closed {
